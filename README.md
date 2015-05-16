@@ -46,6 +46,8 @@ function(vocabularyAsArray) {
 ```
 Format function for rename vocabulary file.
 
+## Examples
+
 ```javascript
 var gulp = require('gulp');
 var gulpClosureCSSRenamer = require('gulp-closure-css-renamer');
@@ -76,5 +78,23 @@ gulp.task('default', function() {
     }))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('target'));
+});
+```
+
+Usage  with [gulp-less](https://github.com/plus3network/gulp-less).
+
+```javascript
+var gulp = require('gulp');
+var less = require('gulp-less');
+var gulpClosureCSSRenamer = require('gulp-closure-css-renamer');
+
+gulp.task('less', function() {
+  gulp.src('./src/less/main.less')
+    .pipe(less())
+    .pipe(gulpClosureCSSRenamer({
+      compress: true,
+      renameFile: './tmp/rename.js'
+    }))
+    .pipe(gulp.dest('./target/'));
 });
 ```
