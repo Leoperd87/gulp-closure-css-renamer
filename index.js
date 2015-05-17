@@ -24,7 +24,7 @@ module.exports = function(options) {
     parseType: 'any',
     wordSeparator: '-',
     renameFile: undefined,
-    formatFunction: function(vocabularyAsArray) {
+    formatFunction: function(vocabularyAsArray, renameType) {
       var vocabulary = {};
       vocabularyAsArray.forEach(function(el) {
         vocabulary[el.name] = el.abbr;
@@ -33,7 +33,7 @@ module.exports = function(options) {
         'goog.provide(\'cssVocabulary\');',
         'goog.setCssNameMapping(',
         JSON.stringify(vocabulary),
-        ');'
+        ',' + (renameType == 'full' ? '\'BY_WHOLE\'' : '\'BY_PART\'') + ');'
       ]).join('\n');
     }
   });

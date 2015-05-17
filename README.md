@@ -31,7 +31,7 @@ gulpClosureCSSRenamer constructor accepts a hash as a parameter, i.e.,
 * `renameFile` - `string`. Default value: `undefined`. Path to rename vocabulary file.
 * `formatFunction` - `function`. Default value: 
 ```javascript
-function(vocabularyAsArray) {
+function(vocabularyAsArray, renameType) {
   var vocabulary = {};
   vocabularyAsArray.forEach(function(el) {
     vocabulary[el.name] = el.abbr;
@@ -40,7 +40,7 @@ function(vocabularyAsArray) {
     'goog.provide(\'cssVocabulary\');',
     'goog.setCssNameMapping(',
     JSON.stringify(vocabulary),
-    ');'
+    ',' + (renameType == 'full' ? '\'BY_WHOLE\'' : '\'BY_PART\'') + ');'
   ]).join('\n');
 }
 ```
